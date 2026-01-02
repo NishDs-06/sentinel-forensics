@@ -1,73 +1,183 @@
-# Welcome to your Lovable project
+🛡️ Sentinel-Forensics
 
-## Project info
+Sentinel-Forensics is a deepfake detection system built to determine whether an image or video is real or manipulated, while also explaining why that decision was made.
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+Instead of acting like a black box, the system highlights which facial regions show signs of manipulation, making the result more transparent and easier to trust.
 
-## How can I edit this code?
 
-There are several ways of editing your application.
+---
 
-**Use Lovable**
+What this project does
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
+Accepts image and video uploads
 
-Changes made via Lovable will be committed automatically to this repo.
+Classifies content as REAL or FAKE
 
-**Use your preferred IDE**
+Provides a confidence score for each prediction
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+Performs region-wise forensic analysis (eyes, mouth, face edges, background)
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+Identifies the dominant suspicious region
 
-Follow these steps:
+Displays results through a clean, user-friendly web interface
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+Runs inference only when a user uploads media
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
 
-# Step 3: Install the necessary dependencies.
-npm i
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
+---
 
-**Edit a file directly in GitHub**
+How the pipeline works
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+1. User uploads an image or video through the frontend
 
-**Use GitHub Codespaces**
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+2. Backend extracts frames (for videos) and detects faces
 
-## What technologies are used for this project?
 
-This project is built with:
+3. Faces are cropped and normalized
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
 
-## How can I deploy this project?
+4. Each face is passed through a deepfake detection model
 
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
 
-## Can I connect a custom domain to my Lovable project?
+5. A forensic post-processing layer analyzes regional inconsistencies
 
-Yes, you can!
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+6. The system returns:
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+Verdict (REAL / FAKE)
+
+Confidence score
+
+Region-wise risk breakdown
+
+
+
+
+
+---
+
+Tech Stack
+
+Frontend
+
+React — component-based UI
+
+TypeScript — type-safe frontend logic
+
+Tailwind CSS — responsive and clean styling
+
+Fetch API / Axios — backend communication
+
+Modular components for uploads, results, and forensic insights
+
+
+
+---
+
+Backend
+
+FastAPI (Python) — high-performance REST API
+
+Uvicorn — ASGI server
+
+Pydantic — request/response validation
+
+CORS middleware — smooth frontend-backend integration
+
+Dedicated endpoints for:
+
+Media upload
+
+Inference execution
+
+Forensic result formatting
+
+
+
+
+---
+
+Machine Learning & Forensics
+
+PyTorch — deep learning inference
+
+CNN-based deepfake detection model
+
+OpenCV — face detection, cropping, and video frame extraction
+
+Frame-wise analysis for videos
+
+Heatmap-based forensic scoring
+
+Region-level aggregation (eyes, mouth, facial edges, background)
+
+
+
+---
+
+Data & Processing
+
+Face-centric preprocessing pipeline
+
+Combination of real and fake samples from public deepfake datasets
+
+Frame sampling to balance accuracy and performance
+
+Lightweight inference design to reduce hardware dependency
+
+
+
+---
+
+Why Sentinel-Forensics?
+
+Most deepfake detection tools provide only a label without context.
+
+Sentinel-Forensics focuses on explainability and trust, helping users understand where manipulation is likely happening instead of blindly accepting a prediction.
+
+
+---
+
+Current Status
+
+Core detection pipeline implemented
+
+End-to-end image analysis working
+
+Frontend and backend fully integrated
+
+Video analysis currently frame-based and improving
+
+
+This is an evolving prototype, and accuracy will improve with more data and training.
+
+
+---
+
+Team
+
+Built by a team of undergraduate engineering students with interests in:
+
+Artificial Intelligence & Machine Learning
+
+Digital Forensics
+
+Cybersecurity
+
+Full-stack Development
+
+
+
+---
+
+Future Improvements
+
+Training on newer, higher-quality deepfake datasets
+
+Improved video-level temporal consistency checks
+
+Faster inference on low-end systems
+
+More detailed forensic explanations
