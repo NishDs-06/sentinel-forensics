@@ -1,0 +1,260 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Dark forensic lab theme */
+    --background: 210 50% 6%;
+    --foreground: 200 20% 92%;
+
+    --card: 210 45% 8%;
+    --card-foreground: 200 20% 92%;
+
+    --popover: 210 50% 7%;
+    --popover-foreground: 200 20% 92%;
+
+    /* Cyan primary for tech feel */
+    --primary: 185 100% 50%;
+    --primary-foreground: 210 50% 6%;
+    --primary-glow: 185 100% 60%;
+
+    /* Navy secondary */
+    --secondary: 210 45% 12%;
+    --secondary-foreground: 200 20% 92%;
+
+    --muted: 210 30% 15%;
+    --muted-foreground: 210 15% 55%;
+
+    /* Electric blue accent */
+    --accent: 200 100% 55%;
+    --accent-foreground: 210 50% 6%;
+
+    /* Status colors */
+    --success: 142 70% 45%;
+    --success-foreground: 142 70% 95%;
+    
+    --warning: 38 95% 55%;
+    --warning-foreground: 38 95% 10%;
+    
+    --destructive: 0 75% 55%;
+    --destructive-foreground: 0 0% 98%;
+
+    /* Info color */
+    --info: 200 100% 55%;
+    --info-foreground: 200 100% 10%;
+
+    --border: 210 30% 18%;
+    --input: 210 30% 12%;
+    --ring: 185 100% 50%;
+
+    --radius: 0.5rem;
+
+    /* Custom gradients */
+    --gradient-cyber: linear-gradient(135deg, hsl(185 100% 50% / 0.2), hsl(200 100% 55% / 0.1));
+    --gradient-dark: linear-gradient(180deg, hsl(210 50% 8%), hsl(210 50% 4%));
+    --gradient-glow: linear-gradient(180deg, hsl(185 100% 50% / 0.15), transparent);
+    --gradient-danger: linear-gradient(135deg, hsl(0 75% 55% / 0.2), hsl(38 95% 55% / 0.1));
+    --gradient-success: linear-gradient(135deg, hsl(142 70% 45% / 0.2), hsl(185 100% 50% / 0.1));
+
+    /* Shadows */
+    --shadow-glow: 0 0 30px hsl(185 100% 50% / 0.3);
+    --shadow-glow-strong: 0 0 60px hsl(185 100% 50% / 0.4);
+    --shadow-card: 0 4px 20px hsl(210 50% 2% / 0.5);
+    --shadow-danger: 0 0 30px hsl(0 75% 55% / 0.3);
+    --shadow-success: 0 0 30px hsl(142 70% 45% / 0.3);
+
+    /* Sidebar */
+    --sidebar-background: 210 50% 5%;
+    --sidebar-foreground: 200 20% 92%;
+    --sidebar-primary: 185 100% 50%;
+    --sidebar-primary-foreground: 210 50% 6%;
+    --sidebar-accent: 210 45% 12%;
+    --sidebar-accent-foreground: 200 20% 92%;
+    --sidebar-border: 210 30% 18%;
+    --sidebar-ring: 185 100% 50%;
+  }
+
+  .dark {
+    /* Same as root - dark only theme */
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'Outfit', sans-serif;
+  }
+
+  /* Monospace for technical data */
+  .font-mono {
+    font-family: 'JetBrains Mono', monospace;
+  }
+}
+
+@layer components {
+  /* Scan line effect */
+  .scanlines {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .scanlines::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      hsl(185 100% 50% / 0.03) 2px,
+      hsl(185 100% 50% / 0.03) 4px
+    );
+    pointer-events: none;
+    z-index: 10;
+  }
+
+  /* Grid overlay */
+  .grid-overlay {
+    background-image: 
+      linear-gradient(hsl(185 100% 50% / 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(185 100% 50% / 0.05) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+
+  /* Glow text */
+  .text-glow {
+    text-shadow: 0 0 10px hsl(185 100% 50% / 0.5), 0 0 30px hsl(185 100% 50% / 0.3);
+  }
+
+  .text-glow-danger {
+    text-shadow: 0 0 10px hsl(0 75% 55% / 0.5), 0 0 30px hsl(0 75% 55% / 0.3);
+  }
+
+  .text-glow-success {
+    text-shadow: 0 0 10px hsl(142 70% 45% / 0.5), 0 0 30px hsl(142 70% 45% / 0.3);
+  }
+
+  .text-glow-warning {
+    text-shadow: 0 0 10px hsl(38 95% 55% / 0.5), 0 0 30px hsl(38 95% 55% / 0.3);
+  }
+
+  /* Border glow */
+  .border-glow {
+    box-shadow: 0 0 15px hsl(185 100% 50% / 0.2), inset 0 0 15px hsl(185 100% 50% / 0.05);
+  }
+
+  .border-glow-danger {
+    box-shadow: 0 0 15px hsl(0 75% 55% / 0.3), inset 0 0 15px hsl(0 75% 55% / 0.05);
+  }
+
+  .border-glow-success {
+    box-shadow: 0 0 15px hsl(142 70% 45% / 0.3), inset 0 0 15px hsl(142 70% 45% / 0.05);
+  }
+
+  /* Animated pulse */
+  .pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse-glow {
+    0%, 100% {
+      box-shadow: 0 0 20px hsl(185 100% 50% / 0.3);
+    }
+    50% {
+      box-shadow: 0 0 40px hsl(185 100% 50% / 0.5);
+    }
+  }
+
+  /* Scanner animation */
+  .scanner-line {
+    animation: scanner 2s ease-in-out infinite;
+  }
+
+  @keyframes scanner {
+    0% {
+      transform: translateY(-100%);
+      opacity: 0;
+    }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(100%);
+      opacity: 0;
+    }
+  }
+
+  /* Fade in animation */
+  .fade-in {
+    animation: fadeIn 0.5s ease-out;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Typing cursor effect */
+  .cursor-blink::after {
+    content: '▌';
+    animation: blink 1s step-end infinite;
+  }
+
+  @keyframes blink {
+    0%, 50% {
+      opacity: 1;
+    }
+    51%, 100% {
+      opacity: 0;
+    }
+  }
+
+  /* Progress bar glow */
+  .progress-glow {
+    box-shadow: 0 0 10px hsl(185 100% 50% / 0.5);
+  }
+}
+
+@layer utilities {
+  /* Hide scrollbar */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Custom scrollbar */
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: hsl(210 50% 8%);
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background: hsl(185 100% 50% / 0.3);
+    border-radius: 3px;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-thumb:hover {
+    background: hsl(185 100% 50% / 0.5);
+  }
+}

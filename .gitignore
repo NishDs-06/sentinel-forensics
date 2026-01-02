@@ -1,0 +1,51 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Python
+venv
+__pycache__
+*.py[cod]
+.pytest_cache
+
+# Backend Media & Large Files
+Backend/VIdeosFF/
+Backend/heatmaps/
+Backend/uploads/
+Backend/data_images/
+Backend/test_samples/
+Backend/data_frames/
+
+# General Media
+*.mp4
+*.avi
+*.mov
+*.mkv
+*.jpg
+*.jpeg
+*.png
+*.gif
+*.webp
+!src/assets/**  # Do not ignore assets in source
+
